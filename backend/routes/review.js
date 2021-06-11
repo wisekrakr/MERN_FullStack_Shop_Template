@@ -5,6 +5,7 @@ const {
   postReview,
   getAllReviewsForOneProductById,
   getReviewById,
+  deleteReview,
 } = require("../controllers/reviewController");
 
 const {
@@ -16,7 +17,10 @@ router.route("/product/:id/post").post(isAuthenticatedUser, postReview);
 router
   .route("/product/:id/reviews")
   .get(isAuthenticatedUser, getAllReviewsForOneProductById);
-router.route("/review/:id").get(isAuthenticatedUser, getReviewById);
+router
+  .route("/review/:id")
+  .get(isAuthenticatedUser, getReviewById)
+  .delete(isAuthenticatedUser, deleteReview);
 
 // Admin Routes
 

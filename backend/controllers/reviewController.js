@@ -4,7 +4,7 @@ const Review = require("../models/review");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-//create a review      POST =>   /api/v1/product/:id/post
+//create a new review or edit a existing review     POST =>   /api/v1/product/:id/post
 exports.postReview = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
@@ -85,22 +85,29 @@ exports.getReviewById = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//update a review   PUT =>   /api/v1/reviews/:id
-exports.updateReview = catchAsyncErrors(async (req, res, next) => {
-  let review = await Review.findById(req.params.id);
+//delete review   DELETE =>   /api/v1/review/:id
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
+  const review = await Review.findById(req.params.id);
 
   if (!review) {
     return next(new ErrorHandler("Review not found", 404));
   }
 
-  review = await Review.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
+  // Remove review from reviews database collection
+  await review.remove().then(async () => {
+    // Find the review's product
+    await Product.findById(review.product).then(async (product) => {
+      // Remove review from product's review list
+
+      await product.reviews.pop(review);
+      product.numberOfReviews = product.reviews.length;
+
+      product.save();
+    });
   });
 
   res.status(200).json({
     success: true,
-    review,
+    message: "Review successfully removed",
   });
 });
