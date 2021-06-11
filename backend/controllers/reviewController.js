@@ -12,105 +12,95 @@ exports.postReview = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Product not found", 404));
   }
 
-  let review = await Review.create({
+  const { rating, comment } = req.body;
+
+  const review = await Review.create({
     user: req.user._id,
-    rating: Number(req.body.rating),
-    comment: req.body.comment,
+    rating: Number(rating),
+    comment,
     product: product._id,
   });
 
-  const newReviews = [];
-
-  product.reviews.forEach(async (reviewId) => {
+  for (const reviewId of product.reviews) {
     const r = await Review.findById(reviewId);
-    newReviews.push(r);
-  });
 
-  console.log("newReviews " + newReviews);
-
-  const isReviewed = newReviews.find(
-    (r) => r.user.toString() === req.user._id.toString()
-  );
-
-  console.log("isReviewed " + isReviewed);
-
-  if (isReviewed) {
-    // if reviewed, update the current review
-    product.reviews.forEach(async (reviewId) => {
-      if (newReview.user.toString() === req.user._id.toString()) {
-        review = await Review.findByIdAndUpdate(reviewId);
-      }
-    });
-  } else {
-    // add new review to review list
-    product.reviews.push(review);
-    product.numberOfReviews = product.reviews.length;
+    if (r.user.toString() === req.user._id.toString()) {
+      r.remove();
+      product.reviews.pop(r);
+      product.numberOfReviews -= 1;
+    }
   }
 
-  var array = [];
+  product.reviews.push(review);
+  product.numberOfReviews = product.reviews.length;
 
   // update product rating
-  product.reviews.forEach(async (reviewId) => {
-    const newReview = await Review.findById(reviewId);
-
-    array.push(newReview.rating);
-  });
-
   product.rating =
     product.reviews.reduce((acc, item) => item.rating + acc, 0) /
     product.reviews.length;
-
-  console.log("Rating: \n" + product.rating);
 
   await product.save({ validateBeforeSave: false });
 
   res.status(200).json({
     success: true,
+    review,
   });
 });
 
-//create a review      POST =>   /api/v1/product/:id/post
-exports.postReview = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+//get all reviews from a product    GET =>   /api/v1/product/:id/reviews
+exports.getAllReviewsForOneProductById = catchAsyncErrors(
+  async (req, res, next) => {
+    const product = await Product.findById(req.params.id);
 
-  if (!product) {
-    return next(new ErrorHandler("Product not found", 404));
-  }
-
-  let review = await Review.create({
-    user: req.user._id,
-    rating: Number(req.body.rating),
-    comment: req.body.comment,
-    product: product._id,
-  });
-
-  product.reviews.forEach(async (reviewId) => {
-    let updatedReview = await Review.findById(reviewId);
-
-    // if reviewed, update the current review
-    if (updatedReview.user === req.user._id) {
-      updatedReview = await Product.findByIdAndUpdate(reviewId, review, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-      });
-    } else {
-      // add new review to review list
-      product.reviews.push(review);
-      product.numberOfReviews = product.reviews.length;
+    if (!product) {
+      return next(new ErrorHandler("Product not found", 404));
     }
-  });
 
-  // update product rating
-  product.rating =
-    product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-    product.reviews.length;
+    let reviews = [];
+    for (const reviewId of product.reviews) {
+      const review = await Review.findById(reviewId);
 
-  console.log("Rating: \n" + product.rating);
+      reviews.push(review);
+    }
 
-  await product.save({ validateBeforeSave: false });
+    res.status(200).json({
+      success: true,
+      totalReviewCount: reviews.length,
+      reviews,
+    });
+  }
+);
+
+//get a review by id    GET =>   /api/v1/review/:id/
+exports.getReviewById = catchAsyncErrors(async (req, res, next) => {
+  const review = await Review.findById(req.params.id);
+
+  if (!review) {
+    return next(new ErrorHandler("Review not found", 404));
+  }
 
   res.status(200).json({
     success: true,
+    review,
+  });
+});
+
+//update a review   PUT =>   /api/v1/reviews/:id
+exports.updateReview = catchAsyncErrors(async (req, res, next) => {
+  let review = await Review.findById(req.params.id);
+
+  if (!review) {
+    return next(new ErrorHandler("Review not found", 404));
+  }
+
+  review = await Review.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    review,
   });
 });
