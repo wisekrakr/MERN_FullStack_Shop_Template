@@ -1,0 +1,62 @@
+[
+    {
+        "name": "SanDisk Memory Card 128GB",
+        "price":"45.89",
+        "description":"Ultra fast cards to take better pictures and Full HD videos with cameras and camcorders.",
+        "rating":4.5,
+        "images":[],
+        "category":"Electronics",
+        "vendor":"Ebay",
+        "stock":50,
+        "numberOfReviews":32,
+        "reviews":[]
+    },
+    {
+        "name": "Monitor",
+        "price":"1500",
+        "description":"A big one",
+        "rating":4.2,
+        "images":[],
+        "category":"Electronics",
+        "vendor":"Ebay",
+        "stock":69,
+        "numberOfReviews":32,
+        "reviews":[]
+    },
+    {
+        "name": "Monitor",
+        "price":"500",
+        "description":"a small one",
+        "rating":4.2,
+        "images":[],
+        "category":"Electronics",
+        "vendor":"Ebay",
+        "stock":69,
+        "numberOfReviews":32,
+        "reviews":[]
+    },
+    {
+        "name": "Blade Runner 2049 BluRay 4k",
+        "price":"19.99",
+        "description":"Watch this movie",
+        "rating":4.9,
+        "images":[],
+        "category":"Movies & Television",
+        "vendor":"Azazon",
+        "stock":155,
+        "numberOfReviews":4500,
+        "reviews":[]
+    },
+    {
+        "name": "Umbro Football",
+        "price":"13.99",
+        "description":"A football to play football with.",
+        "rating":4.3,
+        "images":[],
+        "category":"Sports & Outdoors",
+        "vendor":"Azazon",
+        "stock":2000,
+        "numberOfReviews":1,
+        "reviews":[]
+    }
+]
