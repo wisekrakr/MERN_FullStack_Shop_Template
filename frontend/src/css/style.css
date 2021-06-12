@@ -1,0 +1,328 @@
+:root {
+  --primary-color: #d84c4c;
+  --secondary-color: #30718f;
+  --tertiary-color: #84d8ff;
+  --light-color: #dddddd;
+  --dark-color: #404040;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: "Amazon Ember";
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  background-color: var(--dark-color);
+}
+
+/* ============================ HEADER / NAVBAR ===================================== */
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-brand img {
+  height: 72px;
+  width: 100px;
+}
+
+.inactive {
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.active {
+  color: red;
+  text-decoration: none;
+}
+
+#cart-count {
+  background-color: var(--secondary-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  color: black;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* ================================= HOME PAGE ================================= */
+
+#products_heading {
+  color: var(--light-color);
+}
+
+.custom-list-item {
+  color: #ffffff;
+}
+
+.custom-list-item:hover {
+  background: linear-gradient(#1a5888, #c2def3);
+  border-radius: 5px;
+  padding: 1rem;
+  transition: all 0.75s ease-out;
+}
+
+/** ================================= FOOTER ================================= */
+
+footer .main-footer {
+  padding: 1rem 0;
+  background: var(--light-color);
+  margin-top: 6rem;
+  /* Footer Top */
+  /* Footer transparent */
+  /* Footer light */
+  /* Footer 4 */
+  /* Widgets */
+}
+footer .main-footer footer ul {
+  padding-left: 0;
+  list-style: none;
+}
+footer .main-footer .footer-top {
+  background: #252525;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #222;
+}
+footer .main-footer footer.transparent .footer-top,
+footer .main-footer footer.transparent .main-footer {
+  background: transparent;
+}
+footer .main-footer footer.transparent .footer-copyright {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+}
+footer .main-footer footer.light .footer-top {
+  background: #f9f9f9;
+}
+footer .main-footer footer.light .main-footer {
+  background: #f9f9f9;
+}
+footer .main-footer footer.light .footer-copyright {
+  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+}
+footer .main-footer .footer- .logo {
+  display: inline-block;
+}
+footer .main-footer .widget {
+  padding: 20px;
+  margin-bottom: 40px;
+  text-decoration: none;
+}
+footer .main-footer .widget.widget-last {
+  margin-bottom: 0px;
+}
+footer .main-footer .widget.no-box {
+  padding: 0;
+  background-color: transparent;
+  margin-bottom: 40px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+}
+footer .main-footer .widget.subscribe p {
+  margin-bottom: 18px;
+}
+footer .main-footer .widget li a {
+  color: var(--primary-color);
+}
+footer .main-footer .widget li a:hover {
+  color: var(--secondary-color);
+}
+footer .main-footer .widget-title {
+  margin-bottom: 20px;
+}
+footer .main-footer .widget-title span {
+  background: var(--dark-color) none repeat scroll 0 0;
+  display: block;
+  height: 1px;
+  margin-top: 25px;
+  position: relative;
+  width: 20%;
+}
+footer .main-footer .widget-title span::after {
+  background: inherit;
+  content: "";
+  height: inherit;
+  position: absolute;
+  top: -4px;
+  width: 50%;
+}
+footer .main-footer .widget-title.text-center span,
+footer .main-footer .widget-title.text-center span::after {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+footer .main-footer .widget .badge {
+  float: right;
+  background: var(--primary-color);
+}
+footer .main-footer .typo-light h1,
+footer .main-footer .typo-light h2,
+footer .main-footer .typo-light h3,
+footer .main-footer .typo-light h4,
+footer .main-footer .typo-light h5,
+footer .main-footer .typo-light h6,
+footer .main-footer .typo-light p,
+footer .main-footer .typo-light div,
+footer .main-footer .typo-light span,
+footer .main-footer .typo-light small {
+  color: #fff;
+}
+footer .main-footer ul.social-footer2 {
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+footer .main-footer ul.social-footer2 li {
+  display: inline-block;
+  padding: 0;
+}
+footer .main-footer ul.social-footer2 li a:hover {
+  background-color: #d67f39;
+}
+footer .main-footer ul.social-footer2 li a {
+  display: block;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+}
+
+/* Copy Right Footer */
+.footer-copyright {
+  background: #222;
+  padding: 5px 0;
+}
+
+.footer-copyright .logo {
+  display: inherit;
+}
+
+.footer-copyright nav {
+  float: right;
+  margin-top: 5px;
+}
+
+.footer-copyright nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-copyright nav ul li {
+  border-left: 1px solid #505050;
+  display: inline-block;
+  line-height: 12px;
+  margin: 0;
+  padding: 0 8px;
+}
+
+.footer-copyright nav ul li a {
+  color: var(--primary-color);
+}
+
+.footer-copyright nav ul li:first-child {
+  border: medium none;
+  padding-left: 0;
+}
+
+.footer-copyright p {
+  color: var(--primary-color);
+  margin: 2px 0 0;
+}
+
+/*==================================== HEADINGS ==============================*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--dark-color);
+}
+h1.large-heading,
+h2.large-heading,
+h3.large-heading,
+h4.large-heading,
+h5.large-heading,
+h6.large-heading {
+  font-size: 4.2rem;
+  padding: 2rem !important;
+  text-transform: uppercase;
+}
+h1.medium-heading,
+h2.medium-heading,
+h3.medium-heading,
+h4.medium-heading,
+h5.medium-heading,
+h6.medium-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0.2rem 1rem;
+  background: rgba(220, 236, 248, 0.85);
+  text-transform: uppercase;
+}
+h1.small-heading,
+h2.small-heading,
+h3.small-heading,
+h4.small-heading,
+h5.small-heading,
+h6.small-heading {
+  margin: 2rem;
+  padding: 0.2rem 1rem;
+  background: var(--secondary-color);
+  text-transform: uppercase;
+}
+h1.x-small-heading,
+h2.x-small-heading,
+h3.x-small-heading,
+h4.x-small-heading,
+h5.x-small-heading,
+h6.x-small-heading {
+  margin-bottom: 1rem;
+  padding: 0.1rem 0.5rem;
+  background: var(--secondary-color);
+  text-transform: uppercase;
+}
+
+.heading {
+  border: none;
+  color: rgba(21, 71, 110, 0.85);
+  padding: 2rem;
+}
+
+h3.heading,
+h4.heading,
+h5.heading,
+h6.heading {
+  color: var(--light-color);
+  border: none;
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  padding-bottom: 2rem;
+}
+
+.heading-underline {
+  width: 6rem;
+  height: 0.3rem;
+  background-color: var(--secondary-color);
+  margin: 0 auto 2rem;
+}
+
+.custom-header:hover {
+  background-color: var(--primary-color);
+  transition: all 0.75s ease-out;
+}
