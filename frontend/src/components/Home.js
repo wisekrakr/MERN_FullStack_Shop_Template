@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { ListGroup, Container } from "reactstrap";
 
 import MetaData from "./layout/MetaData";
+import Spinner from "./layout/static/Spinner";
+import Product from "./products/Product";
+import { getProducts } from "../state/actions/productActions";
 
-const Home = () => {
+const Home = ({
+  getProducts,
+  products: { products, totalProductCount, loading, error },
+}) => {
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
+
   return (
     <Container>
       <MetaData title={"The Best Product to Buy Online!"} />
@@ -13,40 +25,36 @@ const Home = () => {
 
       <p className="heading-underline" />
 
-      <ListGroup className="custom-list">
-        <section id="products" className="container mt-5">
-          <div className="row">
-            <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-              <div className="card p-3 rounded">
-                <img
-                  className="card-img-top mx-auto"
-                  src="https://m.media-amazon.com/images/I/617NtexaW2L._AC_UY218_.jpg"
-                />
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">
-                    <a href="">
-                      128GB Solid Storage Memory card - SanDisk Ultra
-                    </a>
-                  </h5>
-                  <div className="ratings mt-auto">
-                    <div className="rating-outer">
-                      <div className="rating-inner"></div>
-                    </div>
-                    <span id="no_of_reviews">(5 Reviews)</span>
-                  </div>
-                  <p className="card-text">$45.67</p>
-                  <a href="#" id="view_btn" className="btn btn-block">
-                    View Details
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <TransitionGroup className="product-list"></TransitionGroup>
-      </ListGroup>
+      <section id="products" className="container mt-5">
+        <div className="row">
+          {products && !loading ? (
+            <ListGroup className="custom-list">
+              {/* Shows a list of study items */}
+
+              {products.map((product) =>
+                product !== null ? (
+                  <Product key={product._id} product={product} />
+                ) : (
+                  <Spinner />
+                )
+              )}
+            </ListGroup>
+          ) : (
+            <Spinner />
+          )}
+        </div>
+      </section>
     </Container>
   );
 };
 
-export default Home;
+Home.propTypes = {
+  getProducts: PropTypes.func.isRequired,
+  products: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
+
+export default connect(mapStateToProps, { getProducts })(Home);

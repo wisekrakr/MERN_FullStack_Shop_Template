@@ -30,34 +30,22 @@ const Header = () => {
       <Collapse isOpen={!collapsed} navbar>
         <Nav navbar>
           <NavItem>
-            <NavLink
-              href="/orders"
-              className="inactive"
-              activeClassName="active"
-            >
+            <NavLink href="/orders">
               <i className="fa fa-truck"></i>Current Orders
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              href="/history"
-              className="inactive"
-              activeClassName="active"
-            >
+            <NavLink href="/history">
               <i className="fa fa-history" aria-hidden="true"></i>History
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              href="/login"
-              className="inactive"
-              activeClassName="active"
-            >
+            <NavLink href="/login">
               <i className="fa fa-plug" aria-hidden="true"></i>Login
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/cart" className="inactive" activeClassName="active">
+            <NavLink href="/cart">
               <span>
                 <i className="fa fa-shopping-cart "></i>Cart
               </span>
