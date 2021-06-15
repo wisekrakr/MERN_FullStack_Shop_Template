@@ -16,7 +16,6 @@ const Home = ({
 
   useEffect(() => {
     if (error) return alert.error(error);
-
     getProducts();
   }, [getProducts, alert, error]);
 

@@ -48,8 +48,4 @@ const Product = ({
   );
 };
 
-Product.propTypes = {
-  product: PropTypes.object.isRequired,
-};
-
-export default connect(null)(Product);
+export default Product;

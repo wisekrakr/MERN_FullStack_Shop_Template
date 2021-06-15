@@ -1,9 +1,8 @@
 import {
   GET_PRODUCTS,
-  GET_PRODUCTS_BY_ID,
+  GET_PRODUCT_BY_ID,
   GET_PRODUCTS_BY_KEYWORD,
   GET_PRODUCTS_USER,
-  GET_PRODUCT,
   POST_PRODUCT,
   DELETE_PRODUCT,
   PRODUCT_ERROR,
@@ -13,6 +12,7 @@ import {
 
 const initialState = {
   products: [],
+  product: null,
   error: null,
   loading: false,
 };
@@ -26,7 +26,13 @@ export default (state = initialState, action) => {
         totalProductCount: action.payload.totalProductCount,
         loading: false,
       };
-
+    case GET_PRODUCT_BY_ID:
+      return {
+        ...state,
+        product: action.payload,
+        products: [],
+        loading: false,
+      };
     case LOADING_PRODUCTS:
       return { ...state, loading: true };
     case PRODUCT_ERROR:

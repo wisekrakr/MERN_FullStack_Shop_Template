@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   GET_PRODUCTS,
+  GET_PRODUCT_BY_ID,
   LOADING_PRODUCTS,
   PRODUCT_ERROR,
   CLEAR_ERROR,
@@ -25,9 +26,22 @@ export const getProducts = () => async (dispatch) => {
   }
 };
 
-// Clear errors
-export const clearErrors = async () => (dispatch) => {
-  dispatch({ type: CLEAR_ERROR });
+// Get product by id
+export const getProductById = (id) => async (dispatch) => {
+  setProductsLoading();
+  try {
+    const { data } = await axios.get(`/api/v1/product/${id}`);
+
+    dispatch({
+      type: GET_PRODUCT_BY_ID,
+      payload: data.product,
+    });
+  } catch (err) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: err.message,
+    });
+  }
 };
 
 // Set Products Loading

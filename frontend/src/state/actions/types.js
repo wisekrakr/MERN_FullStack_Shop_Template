@@ -1,9 +1,8 @@
 // Product types
 export const GET_PRODUCTS = "GET_PRODUCTS";
-export const GET_PRODUCTS_BY_ID = "GET_PRODUCTS_BY_ID";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCTS_BY_ID";
 export const GET_PRODUCTS_BY_KEYWORD = "GET_PRODUCTS_BY_KEYWORD";
 export const GET_PRODUCTS_USER = "GET_PRODUCTS_USER";
-export const GET_PRODUCT = "GET_PRODUCT";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const PRODUCT_ERROR = "PRODUCT_ERROR";

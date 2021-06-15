@@ -7,7 +7,7 @@
 
   --text-dark: rgb(36, 36, 36);
   --text-grey: rgb(104, 102, 102);
-  --text-light: rgba(192, 192, 192);
+  --bg: rgba(192, 192, 192);
   --blue: #08a4ff;
   --purple: rgb(160, 4, 199);
   --yellow: rgb(251, 255, 0);
@@ -31,7 +31,7 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
-  background-color: var(--dark-color);
+  background-color: var(--bg);
 }
 
 /* ============================ HEADER / NAVBAR ===================================== */
@@ -173,6 +173,49 @@ body {
 .card-img-top {
   width: 200px;
   height: 150px;
+}
+
+/* ============================PRODUCT INFO PAGE =================================*/
+
+#product-id {
+  color: var(--light-color);
+  font-size: 0.8rem;
+}
+
+#product-price {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#cart-btn,
+#review-btn {
+  border-radius: 2rem;
+  background-color: var(--secondary-color);
+  border: none;
+  padding: 0.5rem 2rem;
+}
+
+#product-vendor {
+  color: var(--light-color);
+  font-size: 0.9rem;
+}
+
+#stock-status {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-left: 0.3rem;
+}
+
+.redColor {
+  color: red;
+}
+
+.greenColor {
+  color: green;
+}
+
+#product-image {
+  margin-top: 9rem;
 }
 
 /* ================================= SPINNER ================================= */
