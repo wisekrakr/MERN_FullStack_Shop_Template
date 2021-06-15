@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   return (
-    <Navbar className="sticky-top" color="light" light expand="md">
+    <Navbar className="navbar sticky-top" expand="md">
       <NavbarBrand href="/" className="navbar-brand mr-auto">
         <img src="/assets/images/logo.png" alt="#" /> Your Web Shop
       </NavbarBrand>

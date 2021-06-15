@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import "./css/style.css";
+import "./App.css";
 
 import Home from "./components/Home";
 

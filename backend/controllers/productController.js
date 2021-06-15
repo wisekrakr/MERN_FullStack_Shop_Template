@@ -18,7 +18,7 @@ exports.postProduct = catchAsyncErrors(async (req, res, next) => {
 
 //get all products   =>   /api/v1/products    ...?keyword=amazon
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultsPerPage = 4;
+  const resultsPerPage = 8;
   const totalProductCount = await Product.countDocuments();
 
   const apiFeatures = new APIFeatures(Product.find(), req.query)
