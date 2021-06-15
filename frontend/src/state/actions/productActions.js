@@ -9,22 +9,24 @@ import {
 } from "./types";
 
 // Get all Products
-export const getProducts = () => async (dispatch) => {
-  setProductsLoading();
-  try {
-    const { data } = await axios.get("/api/v1/products");
+export const getProducts =
+  (currentPage = 1) =>
+  async (dispatch) => {
+    setProductsLoading();
+    try {
+      const { data } = await axios.get(`/api/v1/products?page=${currentPage}`);
 
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: data,
-    });
-  } catch (err) {
-    dispatch({
-      type: PRODUCT_ERROR,
-      payload: err.message,
-    });
-  }
-};
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: PRODUCT_ERROR,
+        payload: err.message,
+      });
+    }
+  };
 
 // Get product by id
 export const getProductById = (id) => async (dispatch) => {

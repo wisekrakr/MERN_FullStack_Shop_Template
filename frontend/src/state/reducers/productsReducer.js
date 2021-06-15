@@ -24,6 +24,7 @@ export default (state = initialState, action) => {
         ...state,
         products: action.payload.products,
         totalProductCount: action.payload.totalProductCount,
+        itemsPerPage: action.payload.itemsPerPage,
         loading: false,
       };
     case GET_PRODUCT_BY_ID:
