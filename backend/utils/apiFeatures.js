@@ -36,7 +36,7 @@ class APIFeatures {
       (match) => `$${match}`
     );
 
-    console.log(queryCopy);
+    // console.log(queryCopy);
 
     this.query = this.query.find(JSON.parse(queryString));
     return this;

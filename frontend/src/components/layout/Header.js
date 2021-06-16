@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Route } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -13,6 +14,8 @@ import {
   DropdownItem,
 } from "reactstrap";
 
+import Search from "./Search";
+
 const Header = () => {
   const [collapsed, setCollapsed] = useState(true);
 
@@ -26,9 +29,10 @@ const Header = () => {
         <img src="/assets/images/logo.png" alt="#" /> Your Web Shop
       </NavbarBrand>
 
-      <NavbarToggler onClick={toggle} className="mr-2" />
+      <NavbarToggler onClick={toggle} className="mr-2 navbar-dark" />
       <Collapse isOpen={!collapsed} navbar>
         <Nav navbar>
+          <Route render={({ history }) => <Search history={history} />} />
           <NavItem>
             <NavLink href="/orders">
               <i className="fa fa-truck"></i>Current Orders

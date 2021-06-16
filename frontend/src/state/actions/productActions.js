@@ -10,11 +10,13 @@ import {
 
 // Get all Products
 export const getProducts =
-  (currentPage = 1) =>
+  (keyword = "", currentPage = 1, price) =>
   async (dispatch) => {
     setProductsLoading();
     try {
-      const { data } = await axios.get(`/api/v1/products?page=${currentPage}`);
+      const { data } = await axios.get(
+        `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+      );
 
       dispatch({
         type: GET_PRODUCTS,

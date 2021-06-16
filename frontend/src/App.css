@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+
 :root {
-  --primary-color: #d84c4c;
-  --secondary-color: #30718f;
+  --primary-color: #9000b4;
+  --secondary-color: #003953;
   --tertiary-color: #84d8ff;
   --light-color: #dddddd;
   --dark-color: #404040;
@@ -25,7 +27,7 @@
 
 html,
 body {
-  font-family: "Amazon Ember";
+  font-family: "Lato";
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -49,8 +51,19 @@ body {
   font-weight: 700;
 }
 
+.navbar-brand:hover {
+  color: var(--tertiary-color);
+}
+
+.navbar-toggler {
+  color: var(--tertiary-color);
+}
+
 .nav-link {
   color: white;
+}
+.nav-link:hover {
+  color: var(--tertiary-color);
 }
 
 .nav-item {
@@ -71,9 +84,27 @@ body {
   font-size: 0.9rem;
 }
 
+#search-btn {
+  background-color: var(--tertiary-color);
+}
+
+#search-btn:hover {
+  background-color: var(--primary-color);
+}
+
+.input-group {
+  width: 100%;
+  margin-right: 50%;
+}
+
+#search-field {
+  height: 2.4rem;
+  padding: 1rem;
+}
+
 /* ================================= HOME PAGE ================================= */
 
-#products_heading {
+#products-heading {
   color: var(--light-color);
 }
 
@@ -83,14 +114,14 @@ body {
 }
 
 /* ================================= PRODUCT ITEM ================================= */
-#no_of_reviews {
+#no-of-reviews {
   font-size: 0.85rem;
   color: grey;
   margin-left: 0.5rem;
 }
 
 .ratings {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--orange);
 }
 
@@ -124,8 +155,8 @@ body {
   color: white;
 }
 
-#cart_count {
-  background-color: var(--primary-color);
+#cart-count {
+  background-color: var(--orange);
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
   color: black;
@@ -138,16 +169,16 @@ body {
   margin-right: 8px;
   border-radius: 5px;
   min-width: fit-content;
+  transition: all 0.75s ease;
 }
 
 .card:hover {
-  background: linear-gradient(var(--secondary-color), var(--tertiary-color));
+  background: linear-gradient(white, var(--tertiary-color));
   padding: 1rem;
-  transition: all 0.75s ease-out;
 }
 
 .card-title a {
-  color: #2e2e2e;
+  color: var(--dark-color);
   text-decoration: none;
 }
 
@@ -157,6 +188,10 @@ body {
 
 .card-text {
   font-size: 1.4rem;
+}
+
+.card-category {
+  font-size: 12px;
 }
 
 #view-btn {
@@ -171,7 +206,7 @@ body {
 }
 
 .card-img-top {
-  width: 200px;
+  width: 100%;
   height: 150px;
 }
 

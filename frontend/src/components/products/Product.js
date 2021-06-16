@@ -1,28 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Product = ({
-  product: {
-    price,
-    rating,
-    stock,
-    numberOfReviews,
-    reviews,
-    _id,
-    name,
-    description,
-    images,
-    category,
-    vendor,
-    createdAt,
-  },
+  product: { price, rating, numberOfReviews, _id, name, images, category },
+  col,
 }) => {
   return (
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
       <div className="card p-3 rounded">
-        <img className="card-img-top mx-auto" src="" alt="" />
+        <img className="card-img-top " src={images[0]} alt="" />
+        <span className="card-category">{category}</span>
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">
             <Link to={`/product/${_id}`}>{name}</Link>
@@ -36,7 +23,7 @@ const Product = ({
                 {rating}
               </div>
             </div>
-            <span id="no_of_reviews">{numberOfReviews} Reviews</span>
+            <span id="no-of-reviews">{numberOfReviews} Reviews</span>
           </div>
           <p className="card-text">€{price}</p>
           <Link to={`/product/${_id}`} id="view-btn" className="btn btn-block">

@@ -3,24 +3,33 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 import MetaData from "./layout/MetaData";
 import Spinner from "./layout/static/Spinner";
 import Product from "./products/Product";
 import { getProducts } from "../state/actions/productActions";
 
+const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const Range = createSliderWithTooltip(Slider.Range);
+
 const Home = ({
   getProducts,
   products: { products, totalProductCount, loading, error, itemsPerPage },
+  match,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const keyword = match.params.keyword;
+  const [price, setPrice] = useState([1, 999]);
 
   const alert = useAlert();
 
   useEffect(() => {
     if (error) return alert.error(error);
-    getProducts(currentPage);
-  }, [getProducts, alert, error, currentPage]);
+
+    getProducts(keyword, currentPage, price);
+  }, [getProducts, alert, error, currentPage, keyword, price]);
 
   function setCurrentPageNumber(pageNumber) {
     setCurrentPage(pageNumber);
@@ -28,7 +37,7 @@ const Home = ({
 
   return (
     <Fragment>
-      <MetaData title={"The Best Product to Buy Online!"} />
+      <MetaData title={"The Best Products to Buy Online!"} />
       <h6 className="text-center small-heading text-light">
         Latest Products: {totalProductCount ? totalProductCount : 0} products
       </h6>
@@ -41,20 +50,42 @@ const Home = ({
         <Fragment>
           <section id="products" className="container mt-5">
             <div className="row">
-              {products && !loading ? (
-                products.map((product) =>
-                  product !== null ? (
-                    <Product
-                      className="custom-list-item"
-                      key={product._id}
-                      product={product}
-                    />
-                  ) : (
-                    <Spinner />
-                  )
-                )
+              {keyword ? (
+                <Fragment>
+                  <div className="col-6  mb-5">
+                    <div className="px-5">
+                      <span className="px-3">Filter by Price</span>
+                      <Range
+                        marks={{
+                          1: `€1`,
+                          999: `€999`,
+                        }}
+                        min={1}
+                        max={999}
+                        defaultValue={[1, 999]}
+                        topFormatter={(value) => `€${value}`}
+                        tipProps={{
+                          placement: "top",
+                          visible: true,
+                        }}
+                        value={price}
+                        onChange={(price) => setPrice(price)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-12">
+                    <div className="row">
+                      {products.map((product) => (
+                        <Product key={product._id} product={product} />
+                      ))}
+                    </div>
+                  </div>
+                </Fragment>
               ) : (
-                <Spinner />
+                products.map((product) => (
+                  <Product key={product._id} product={product} />
+                ))
               )}
             </div>
           </section>
