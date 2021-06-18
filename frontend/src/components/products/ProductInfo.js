@@ -15,7 +15,7 @@ const ProductInfo = ({
   match,
   getProductById,
   clearErrors,
-  products: { product, loading, error },
+  product: { product, error, loading },
 }) => {
   const alert = useAlert();
 
@@ -25,7 +25,7 @@ const ProductInfo = ({
       alert.error(error);
       clearErrors();
     }
-  }, [getProductById, alert, error, match.params.id]);
+  }, [getProductById, clearErrors, alert, error, match.params.id]);
 
   return (
     <Fragment>
@@ -200,11 +200,12 @@ const ProductInfo = ({
 
 ProductInfo.propTypes = {
   getProductById: PropTypes.func.isRequired,
-  products: PropTypes.object.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  product: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  products: state.products,
+  product: state.product,
 });
 
 export default connect(mapStateToProps, { getProductById, clearErrors })(

@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 
 const Product = ({
   product: { price, rating, numberOfReviews, _id, name, images, category },
-  col,
 }) => {
   return (
-    <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-      <div className="card p-3 rounded">
+    <div className="col-sm-9 col-md-6 col-lg-3 my-3 ">
+      <div className="card p-3 rounded ">
         <img className="card-img-top " src={images[0]} alt="" />
         <span className="card-category">{category}</span>
         <div className="card-body d-flex flex-column">

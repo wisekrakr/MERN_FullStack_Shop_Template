@@ -14,16 +14,14 @@ const {
   authorizationRoles,
 } = require("../middleware/auth");
 
+router.route("/categories").get(getAllCategories);
+router.route("/category/:id").get(getCategoryById);
+
 // Admin Routes
 router
   .route("/admin/categories/post")
   .post(isAuthenticatedUser, authorizationRoles("admin"), postCategory);
-router
-  .route("/admin/category/:id")
-  .get(isAuthenticatedUser, authorizationRoles("admin"), getCategoryById);
-router
-  .route("/admin/categories")
-  .get(isAuthenticatedUser, authorizationRoles("admin"), getAllCategories);
+
 router
   .route("/admin/category/:id")
   .put(isAuthenticatedUser, authorizationRoles("admin"), updateCategory)

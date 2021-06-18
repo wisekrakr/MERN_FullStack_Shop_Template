@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Home from "../components/Home";
-import Search from "../components/layout/Search";
 import ProductInfo from "../components/products/ProductInfo";
 
 const Routes = () => {

@@ -113,6 +113,12 @@ body {
   flex-direction: row;
 }
 
+.filter {
+  border-right: 6px solid var(--secondary-color);
+  height: 100%;
+  margin-left: -100px;
+}
+
 /* ================================= PRODUCT ITEM ================================= */
 #no-of-reviews {
   font-size: 0.85rem;
@@ -166,10 +172,10 @@ body {
 
 .card {
   height: 100%;
-  margin-right: 8px;
+  width: auto;
+  /* margin-right: 8px; */
   border-radius: 5px;
-  min-width: fit-content;
-  transition: all 0.75s ease;
+  /* min-width: fit-content; */
 }
 
 .card:hover {

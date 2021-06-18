@@ -4,19 +4,33 @@ import {
   GET_PRODUCTS,
   GET_PRODUCT_BY_ID,
   LOADING_PRODUCTS,
+  PRODUCTS_ERROR,
+  LOADING_PRODUCT,
   PRODUCT_ERROR,
   CLEAR_ERROR,
 } from "./types";
 
 // Get all Products
 export const getProducts =
-  (keyword = "", currentPage = 1, price) =>
+  (keyword = "", currentPage = 1, price, category, rating = 0) =>
   async (dispatch) => {
     setProductsLoading();
     try {
-      const { data } = await axios.get(
-        `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
-      );
+      let params = {
+        keyword: keyword,
+        page: currentPage,
+        "price[lte]": price[1],
+        "price[gte]": price[0],
+        "rating[gte]": rating,
+      };
+
+      if (category) {
+        params.category = category;
+      }
+
+      const { data } = await axios.get("/api/v1/products", {
+        params: params,
+      });
 
       dispatch({
         type: GET_PRODUCTS,
@@ -24,7 +38,7 @@ export const getProducts =
       });
     } catch (err) {
       dispatch({
-        type: PRODUCT_ERROR,
+        type: PRODUCTS_ERROR,
         payload: err.message,
       });
     }
@@ -32,7 +46,7 @@ export const getProducts =
 
 // Get product by id
 export const getProductById = (id) => async (dispatch) => {
-  setProductsLoading();
+  setProductLoading();
   try {
     const { data } = await axios.get(`/api/v1/product/${id}`);
 
@@ -51,4 +65,8 @@ export const getProductById = (id) => async (dispatch) => {
 // Set Products Loading
 export const setProductsLoading = async () => (dispatch) => {
   dispatch({ type: LOADING_PRODUCTS });
+};
+// Set Product Loading
+export const setProductLoading = async () => (dispatch) => {
+  dispatch({ type: LOADING_PRODUCT });
 };

@@ -3,7 +3,7 @@ const Category = require("../models/category");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-//get all categories        GET =>    /api/v1/admin/categories
+//get all categories        GET =>    /api/v1/categories
 exports.getAllCategories = catchAsyncErrors(async (req, res, next) => {
   const categories = await Category.find();
 
@@ -32,7 +32,7 @@ exports.postCategory = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//get single category by id     GET  =>   /api/v1/admin/category/:id
+//get single category by id     GET  =>   /api/v1/category/:id
 exports.getCategoryById = catchAsyncErrors(async (req, res, next) => {
   const category = await Category.findById(req.params.id);
 
